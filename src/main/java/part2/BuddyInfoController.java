@@ -69,19 +69,21 @@ public class BuddyInfoController {
                                        @RequestParam(name="name") String name,
                                        @RequestParam(name="phone-num") int phoneNum) {
         AddressBook addressBook = removeAddressBookBuddy(id, name);
-//        addressBook.removeBuddy(buddyInfo);
-//
-//        addressBookRepository.save(addressBook);
+
         return addressBook;
     }
 
     private AddressBook removeAddressBookBuddy(long id, String name) {
         List<BuddyInfo> buddyInfos = buddyInfoRepository.findByName(name);
+
         BuddyInfo buddyInfo = null;
         if (buddyInfos.size() > 0) buddyInfo = buddyInfos.get(0);
 
-        buddyInfoRepository.delete(buddyInfo);
+        AddressBook addressBook = addressBookRepository.findById(id);
+        addressBook.removeBuddy(buddyInfo);
 
-        return addressBookRepository.findById(id);
+        addressBookRepository.save(addressBook);
+
+        return addressBook;
     }
 }
