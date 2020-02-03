@@ -12,6 +12,7 @@ public class BuddyInfo {
 
     private String name;
     private int phoneNumber;
+    private String address;
 
     @ManyToOne
     @JsonIgnore
@@ -64,5 +65,13 @@ public class BuddyInfo {
 
     public void setAddressBook(AddressBook addressBook) {
         this.addressBook = addressBook;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
