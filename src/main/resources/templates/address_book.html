@@ -11,6 +11,7 @@
     <tr>
         <th> Name </th>
         <th> Phone Number </th>
+        <th> Address </th>
     </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
     <tr th:each="buddy : ${buddies}">
         <td><span th:text="${buddy.name}"> Name </span></td>
         <td><span th:text="${buddy.phoneNumber}"> Phone Number </span></td>
+        <td><span th:text="${buddy.address}"> Address </span></td>
     </tr>
     </tbody>
 </table>

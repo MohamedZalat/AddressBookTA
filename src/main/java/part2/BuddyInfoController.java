@@ -20,8 +20,9 @@ public class BuddyInfoController {
     public String addBuddyInfo(@PathVariable long id,
                                @RequestParam(name="name") String name,
                                @RequestParam(name="phone-num") int phoneNum,
+                               @RequestParam(name="address") String address,
                                Model model) {
-        AddressBook addressBook = createAddressBookBuddy(id, name, phoneNum);
+        AddressBook addressBook = createAddressBookBuddy(id, name, phoneNum, address);
         return getString(addressBook, model);
     }
 
@@ -29,13 +30,14 @@ public class BuddyInfoController {
     @ResponseBody
     public AddressBook addBuddyInfo(@PathVariable long id,
                                     @RequestParam(name="name") String name,
-                                    @RequestParam(name="phone-num") int phoneNum) {
-        AddressBook addressBook = createAddressBookBuddy(id, name, phoneNum);
+                                    @RequestParam(name="phone-num") int phoneNum,
+                                    @RequestParam(name="address") String address) {
+        AddressBook addressBook = createAddressBookBuddy(id, name, phoneNum, address);
         return addressBook;
     }
 
-    private AddressBook createAddressBookBuddy(long id, String name, int phoneNum) {
-        BuddyInfo buddyInfo = new BuddyInfo(name, phoneNum);
+    private AddressBook createAddressBookBuddy(long id, String name, int phoneNum, String address) {
+        BuddyInfo buddyInfo = new BuddyInfo(name, phoneNum, address);
 
         AddressBook addressBook = addressBookRepository.findById(id);
         System.out.println("Pre-adding buddy: " + addressBook.getBuddies());
@@ -66,8 +68,7 @@ public class BuddyInfoController {
     @DeleteMapping(value="/addressbook/{id}/buddy", produces = "application/json")
     @ResponseBody
     public AddressBook removeBuddyInfo(@PathVariable long id,
-                                       @RequestParam(name="name") String name,
-                                       @RequestParam(name="phone-num") int phoneNum) {
+                                       @RequestParam(name="name") String name) {
         AddressBook addressBook = removeAddressBookBuddy(id, name);
 
         return addressBook;

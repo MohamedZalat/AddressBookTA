@@ -45,12 +45,15 @@ public class AddressBookAppTest {
         // Add two buddies.
         this.mockMvc.perform(post("/addressbook/1/buddy")
                 .param("name", "moe")
-                .param("phone-num", "613")).andDo(print()).andExpect(status().isOk())
+                .param("phone-num", "613")
+                .param("address", "Carleton")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("moe")))
-                .andExpect(content().string(containsString("613")));
+                .andExpect(content().string(containsString("613")))
+                .andExpect(content().string(containsString("carleton")));
         this.mockMvc.perform(post("/addressbook/1/buddy")
                 .param("name", "babak")
-                .param("phone-num", "613")).andDo(print()).andExpect(status().isOk())
+                .param("phone-num", "613")
+                .param("address", "Carleton")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("moe")))
                 .andExpect(content().string(containsString("babak")));
 
@@ -69,8 +72,7 @@ public class AddressBookAppTest {
 
         // Remove one buddy and make sure only the one we want to remove is the one removed.
         this.mockMvc.perform(delete("/addressbook/1/buddy")
-                .param("name", "moe")
-                .param("phone-num", "613")).andDo(print()).andExpect(status().isOk())
+                .param("name", "moe")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("babak")))
                 .andExpect(content().string(not(containsString("moe"))));
 
