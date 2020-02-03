@@ -49,7 +49,7 @@ public class AddressBookAppTest {
                 .param("address", "Carleton")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string(containsString("moe")))
                 .andExpect(content().string(containsString("613")))
-                .andExpect(content().string(containsString("carleton")));
+                .andExpect(content().string(containsString("Carleton")));
         this.mockMvc.perform(post("/addressbook/1/buddy")
                 .param("name", "babak")
                 .param("phone-num", "613")
