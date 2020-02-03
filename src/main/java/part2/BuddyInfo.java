@@ -18,13 +18,18 @@ public class BuddyInfo {
     @JsonIgnore
     private AddressBook addressBook;
 
-    public BuddyInfo(String name, int phoneNumber) {
+    public BuddyInfo(String name, int phoneNumber, String address) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+    public BuddyInfo(String name, int phoneNumber) {
+        this(name, phoneNumber, null);
     }
 
     public BuddyInfo() {
-        this(null,0);
+        this(null, 0);
     }
 
     public String getName() {
