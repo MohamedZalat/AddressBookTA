@@ -33,7 +33,7 @@ public class AddressBookAppTest {
     @Test
     public void shouldReturnDefaultMessage() throws Exception {
         this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Welcome to your Address Book!")));
+                .andExpect(content().string(containsString("Create an Address book")));
     }
 
     @Test
