@@ -1,10 +1,28 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Moe's Address Book Application</title>
+    <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="index.js"></script>
 </head>
-<body>
-<h1>Welcome to your Address Book!</h1>
+<body id="body">
+
+<h1>Create an Address book</h1>
+<form id="create" action="#" th:action="@{/addressbook}" method="post">
+    <p><input type="submit" value="create" /></p>
+</form>
+
+<h1>View an Address book</h1>
+<form id="view" action="#" th:action="@{/addressbook}" method="get">
+    id: <input type="number" step="1" name="id" id="view-id"/><br>
+    <p><input type="submit" value="view" /></p>
+</form>
+
+<h1>Add a buddy</h1>
+<form id="add" action="#" th:action="@{/add_buddy}" method="get">
+    addressbook: <input type="number" step="1" name="id" id="add-id"/><br>
+    <p><input type="submit" value="add" /></p>
+</form>
 </body>
 </html>
